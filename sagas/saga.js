@@ -14,8 +14,9 @@ function* runClockSaga() {
 function* loadDataSaga() {
   try {
     const res = yield call(callAPI.FetchMockApi);
-    // console.log("----------------", res);
-    const data = yield res.json();
+    console.log("----------------", res);
+    const { data, status } = yield res;
+    console.log("code: ", status);
     yield put(loadDataSuccess(data));
   } catch (err) {
     yield put(failure(err));
