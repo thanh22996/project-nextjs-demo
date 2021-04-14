@@ -13,10 +13,10 @@ function* runClockSaga() {
 
 function* loadDataSaga() {
   try {
-    const res = yield call(callAPI.FetchMockApi);
+    const res = yield call(callAPI.getDataRequest);
     console.log("----------------", res);
-    const { data, status } = yield res;
-    console.log("code: ", status);
+    const data = yield res;
+    // console.log("code: ", status);
     yield put(loadDataSuccess(data));
   } catch (err) {
     yield put(failure(err));
